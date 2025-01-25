@@ -1,0 +1,107 @@
+create.js
+
+
+const express = require("express");
+const app = express();
+const exhbs = require("express-handlebars");
+
+app.engine("hbs",
+    exhbs.engine({
+        layoutsDir:'viewsfold/',
+        defaultLayout:'maincopy',
+        extname:'hbs'
+    })
+);
+
+app.set("view engine", "hbs");
+app.set("views", "viewsfold");
+
+app.get("/", (req, res) => {
+    const message = "Hello";
+    res.render("maincopy", { message });    
+});
+
+app.listen(9000, () => {
+    console.log("Server is running on port 9000");
+});
+
+
+
+=================================================================
+maincopy.hbs
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>MongoDB Crud</title>
+</head>
+<body>
+    <h1>The message is</h1>
+    <h4>{{message}}</h4>
+</body>
+</html>
+
+=================================================================
+
+Day 2
+
++=+=++====+====+===++===++==++=======+++=+++++++++===+==++=++==
+
+const express = require("express");
+const app = express();
+const exhbs = require("express-handlebars");
+const dbo = require("./db");
+
+app.engine("hbs",
+    exhbs.engine({
+        layoutsDir:'viewsfold/',
+        defaultLayout:'maincopy',
+        extname:'hbs'
+    })
+);
+
+app.set("view engine", "hbs");
+app.set("views", "viewsfold");
+
+app.get("/", async (req, res) => {
+    let database = await dbo.getDatabase();
+    const collection = database.collection("student");
+    const cursur = collection.find({ id: { $exists: true } });
+    let datas = await cursur.toArray();
+    const message = "";
+    console.log('The data',datas);
+    res.render("maincopy", { message ,datas});    
+});
+
+app.listen(9000, () => {
+    console.log("Server is running on port 9000");
+});
+
+==================================================================================
+
+db.js
+
+const mongodb = require("mongodb");
+const mongoClient = mongodb.MongoClient;
+
+let database;
+
+async function getDatabase() {
+    const client = await mongoClient.connect('mongodb://127.0.0.1:27017');
+
+    database = client.db('react');
+
+    if(database) {
+        console.log("Database connected successfully");
+    }
+    else {
+        console.log("Database failed to connect");
+    }
+    return database;
+}
+
+module.exports = {
+    getDatabase
+}
+===============================================================================

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MongoDB CRUD</title>
+</head>
+<body>
+    <h1>Form</h1>
+    {{#if stu_id}}
+    <h1>Update</h1>
+    <form action="/update/{{stu_id}}" method="POST">
+    <label for="first_name">First Name</label>
+    <input type="text" name="first_name" value="{{edit_stu.first_name}}">
+    <label for="last_name">Last Name</label>
+    <input type="text" name="last_name" value="{{edit_stu.last_name}}">
+    <label for="email">Email</label>
+    <input type="email" name="email" value="{{edit_stu.email}}">
+    <button type="submit">Submit</button>
+    </form>
+    {{else}}
+    <h1>Create</h1>
+    <form action="/form" method="POST">
+    <label for="first_name">First Name</label>
+    <input type="text" name="first_name" >
+    <label for="last_name">Last Name</label>
+    <input type="text" name="last_name">
+    <label for="email">Email</label>
+    <input type="email" name="email">
+    <button type="submit">Submit</button>
+    </form>
+    {{/if}}
+    <div>
+    <h4>{{message}}</h4>
+    </div>
+    <div>
+    <table>
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each datas}}
+                <tr>
+                    <td>{{this.first_name}}</td>
+                    <td>{{this.last_name}}</td>
+                    <td>{{this.email}}</td>
+                    <td><a href="/?edit_id={{this._id}}">Edit</a></td>
+                    <td><a href="/?delete_id={{this._id}}" onclick="return confirm('Are you sure to delete the student detail of {{this.first_name}}?')">Delete</a></td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    </div>
+</body>
+</html>

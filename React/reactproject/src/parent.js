@@ -1,0 +1,24 @@
+import Child1 from './child1';
+function Parent()
+{
+    const names = [
+        "Student Name", "AADHITHYA S", "ABHIRAMI T", "ABISHA J", "ADHISESAN A R", "ADHITHIYA G", 
+        "AFRA FATHIMA M", "AJAI KANNAN M", "AJAY D", "AKASH G", "AKASH K", "AKSHAYA N", 
+        "ANANDHI A", "ANBUCHEZHIYAN A M", "ANURAKTHI K M", "ANWAR RAJA A", "ARCHANA S", 
+        "ARSHIYA A", "ARUMUGAVEL K", "ARUN R S", "ASHINI R", "ATCHAYA S", "ATHARSHA P", 
+        "ATHIKESAVAN M", "ATHITHYAN M", "BALAHARAN S", "BAVISHNAVI S", "CHANDRAMUHILAN M", 
+        "CHARUHASINI P", "DEAVANANTHAN S", "DEEPIKA M", "DEVDARSHAN A", "DHANALAKSHMI R", 
+        "DHANUSHBALAN N", "DHIRAAJ M", "DHIVYA P", "DIVYA N", "DIVYASREERITHA R", "ESTERRANI J", 
+        "GOKUL U", "GOWTHAM S L", "HARIHARASUDHAN G", "HARIKRISHNAN E", "HARINIVASH S", 
+        "HARIPRIYA M", "HARISH R", "HARISH S", "HARISMITA B", "HARSHA K", "HARSHAVARSHINI P S", 
+        "HARSHAWARDHINI M", "IRFAN KHAN A", "JAGATH VISNU S V", "JAYASASIREKHA M", "JEEVANANTHAM S", 
+        "KAMALESH G J", "KANCHIMALAI M", "KAVIN SANJAY S", "KAVYA R", "KEERTHIKHAA K R", 
+        "KISHORE KANNAN G", "KISHORE R", "LAKSHANA R", "LALIT ADITYA S", "MADHUPRIYA"
+    ];
+    return(
+        <div>
+            <Child1 names={names} /> 
+        </div>
+    )
+}
+export default Parent;
