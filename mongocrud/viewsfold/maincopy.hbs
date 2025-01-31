@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lanh ="en">
+    <head>
+        <title>MONGODB CRUD</title>
+    </head>
+
+    <body>
+        <h1>MONGODB CRUD EXAMPLE</h1>
+
+        {{#if edit_id}}
+        <h3>Edit form</h3>
+        <form action="/updateinfo/{{edit_id}}" method="post">
+        <label>EMP ID</label>
+        <input type="text" name="eid" value="{{edit_emp.empid}}">
+        <label>EMP NAME</label>
+        <input type="text" name="ename" value="{{edit_emp.empname}}"><br><br>
+        <input type="submit">
+        </form><br><br>
+
+        {{else}}
+
+        <h3>Create form</h3>
+        <form action="/empinfo" method="post">
+        <label>EMP ID</label>
+        <input type="text" name="eid">
+        <label>EMP NAME</label>
+        <input type="text" name="ename"><br><br>
+        <input type="submit">
+        </form><br><br>
+        {{/if}}
+
+        <ul>`
+            {{#each datas}}
+            <li>{{this.empid}} {{this.empname}} <a href="/?edit_idd={{this._id}}">Edit</a>
+            <a href="/?delete_idd={{this._id}}" onclick="return confirm('are you sure you want to delete...')">Delete</a>
+            </li>
+            {{/each}}
+        </ul>   
+
+        <p>{{message}}</p>
+
+    
+    </body>
+</html>
+
